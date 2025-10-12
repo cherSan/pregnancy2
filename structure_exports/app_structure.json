@@ -1,0 +1,131 @@
+{
+  "project_info": {
+    "name": "app",
+    "path": "C:\\Users\\chersan\\WebstormProjects\\pregnancy-v2\\app",
+    "generated_at": "2025-10-12T18:00:09.5232186",
+    "total_files": 6,
+    "total_size": 3068
+  },
+  "structure": {
+    "(private)": {
+      "_layout.tsx": {
+        "type": "file",
+        "info": {
+          "size": 609,
+          "last_modified": "2025-10-12T18:00:09.5232186",
+          "mime_type": "text/plain",
+          "extension": ".tsx"
+        }
+      }
+    },
+    "authorization.tsx": {
+      "type": "file",
+      "info": {
+        "size": 635,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "text/plain",
+        "extension": ".tsx"
+      }
+    },
+    "index.tsx": {
+      "type": "file",
+      "info": {
+        "size": 619,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "text/plain",
+        "extension": ".tsx"
+      }
+    },
+    "registration": {
+      "index.tsx": {
+        "type": "file",
+        "info": {
+          "size": 0,
+          "last_modified": "2025-10-12T18:00:09.5232186",
+          "mime_type": "application/octet-stream",
+          "extension": ".tsx"
+        }
+      },
+      "_layout.tsx": {
+        "type": "file",
+        "info": {
+          "size": 632,
+          "last_modified": "2025-10-12T18:00:09.5232186",
+          "mime_type": "text/plain",
+          "extension": ".tsx"
+        }
+      }
+    },
+    "_layout.tsx": {
+      "type": "file",
+      "info": {
+        "size": 573,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "text/plain",
+        "extension": ".tsx"
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "(private)\\_layout.tsx",
+      "content": "import {View, Text, Button} from \"react-native\";\r\nimport {useRouter} from \"expo-router\";\r\n\r\nexport const PrivateLayout = () => {\r\n    const router = useRouter();\r\n    return (\r\n        <View>\r\n            <Button title={'login'} onPress={() => router.replace('/authorization')} />\r\n            <Button title={'private'} onPress={() => router.replace('/(private)')} />\r\n            <Button title={'registration'} onPress={() => router.replace('/(registration)')} />\r\n            <Text>PRIVATE</Text>\r\n        </View>\r\n    );\r\n};\r\n\r\nPrivateLayout.displaName = \"PrivateLayout\";\r\n\r\nexport default PrivateLayout;\r\n",
+      "info": {
+        "size": 609,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "text/plain",
+        "extension": ".tsx"
+      }
+    },
+    {
+      "path": "authorization.tsx",
+      "content": "import {View, Text, Button} from \"react-native\";\r\nimport {Stack, useNavigation, useRouter} from \"expo-router\";\r\n\r\nexport const Authorization = () => {\r\n    const router = useRouter();\r\n    return (\r\n        <View>\r\n            <Button title={'login'} onPress={() => router.replace('/authorization')} />\r\n            <Button title={'private'} onPress={() => router.replace('/(private)')} />\r\n            <Button title={'registration'} onPress={() => router.replace('/registration')} />\r\n            <Text>Authorization</Text>\r\n        </View>\r\n    );\r\n};\r\n\r\nAuthorization.displaName = \"Authorization\";\r\n\r\nexport default Authorization;\r\n",
+      "info": {
+        "size": 635,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "text/plain",
+        "extension": ".tsx"
+      }
+    },
+    {
+      "path": "index.tsx",
+      "content": "import {View, Text, Button} from \"react-native\";\r\nimport {useRouter} from \"expo-router\";\r\n\r\nexport const Initialization = () => {\r\n    const router = useRouter();\r\n    return (\r\n        <View>\r\n            <Button title={'login'} onPress={() => router.replace('/authorization')} />\r\n            <Button title={'private'} onPress={() => router.replace('/(private)')} />\r\n            <Button title={'registration'} onPress={() => router.replace('/(registration)')} />\r\n            <Text>Initialization</Text>\r\n        </View>\r\n    );\r\n};\r\n\r\nInitialization.displayName = \"Initialization\";\r\n\r\nexport default Initialization;",
+      "info": {
+        "size": 619,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "text/plain",
+        "extension": ".tsx"
+      }
+    },
+    {
+      "path": "registration\\index.tsx",
+      "content": "",
+      "info": {
+        "size": 0,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "application/octet-stream",
+        "extension": ".tsx"
+      }
+    },
+    {
+      "path": "registration\\_layout.tsx",
+      "content": "import {View, Text, Button} from \"react-native\";\r\nimport {useRouter} from \"expo-router\";\r\n\r\nexport const RegistrationLayout = () => {\r\n    const router = useRouter();\r\n    return (\r\n        <View>\r\n            <Button title={'login'} onPress={() => router.replace('/authorization')} />\r\n            <Button title={'private'} onPress={() => router.replace('/(private)')} />\r\n            <Button title={'registration'} onPress={() => router.replace('/registration')} />\r\n            <Text>REGISTRATION</Text>\r\n        </View>\r\n    );\r\n};\r\n\r\nRegistrationLayout.displaName = \"RegistrationLayout\";\r\n\r\nexport default RegistrationLayout;\r\n",
+      "info": {
+        "size": 632,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "text/plain",
+        "extension": ".tsx"
+      }
+    },
+    {
+      "path": "_layout.tsx",
+      "content": "import {Stack, useNavigation, useRouter} from \"expo-router\";\nimport {Button, View} from \"react-native\";\nimport {SafeAreaView} from \"react-native-safe-area-context\";\n\nexport default function RootLayout() {\n  return (\n        <Stack>\n            <Stack.Screen name=\"index\" options={{ headerShown: true }} />\n            <Stack.Screen name=\"(private)\" options={{ headerShown: true }} />\n            <Stack.Screen name=\"(registration)\" options={{ headerShown: true }} />\n            <Stack.Screen name=\"authorization\" options={{ headerShown: true }} />\n        </Stack>\n  );\n}\n",
+      "info": {
+        "size": 573,
+        "last_modified": "2025-10-12T18:00:09.5232186",
+        "mime_type": "text/plain",
+        "extension": ".tsx"
+      }
+    }
+  ]
+}
