@@ -8,18 +8,30 @@
     "scheme": "pregnancyv2",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "primaryColor": "#6a1b9a",
+    "androidNavigationBar": {
+      "backgroundColor": "#6a1b9a"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#6a1b9a",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ],
+      "softwareKeyboardLayoutMode": "resize",
+      "package": "com.chersan.pregnancyv2"
     },
     "web": {
       "output": "static",
@@ -48,7 +60,7 @@
       "expo-localization",
       "react-native-localize",
       "expo-font",
-      "@vonovak/react-native-theme-control"
+      "./plugins/withAndroidDatePickerStyles"
     ],
     "experiments": {
       "typedRoutes": true,

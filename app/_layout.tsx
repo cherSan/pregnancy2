@@ -5,10 +5,6 @@ import {GreatVibes_400Regular} from "@expo-google-fonts/great-vibes";
 import {Nunito_400Regular} from "@expo-google-fonts/nunito";
 import {NotoSerifDisplay_400Regular} from "@expo-google-fonts/noto-serif-display";
 import {NotoSans_400Regular} from "@expo-google-fonts/noto-sans";
-import {
-    setThemePreference,
-    useThemePreference,
-} from '@vonovak/react-native-theme-control';
 
 export default function RootLayout() {
     const [fontsLoaded] = useFonts({
@@ -17,7 +13,6 @@ export default function RootLayout() {
         NotoSans_400Regular,
         NotoSerifDisplay_400Regular,
     });
-    setThemePreference('dark');
     if (!fontsLoaded) return null;
 
   return (
