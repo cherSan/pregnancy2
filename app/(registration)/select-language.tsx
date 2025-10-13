@@ -28,56 +28,60 @@ export const SelectLanguage = () => {
 
     return (
         <Page>
-            <PageTitle>{t('selectLanguage')}</PageTitle>
-            <Carousel
-                loop={false}
-                width={width}
-                height={width/2}
-                data={languages}
-                snapEnabled={true}
-                onSnapToItem={index => i18n.changeLanguage(languages[index].code)}
-                customAnimation={(value: number) => {
-                    "worklet";
-                    const size = PAGE_WIDTH;
-                    const scale = interpolate(
-                        value,
-                        [-2, -1, 0, 1, 2],
-                        [2, 1.2, 1, 1.2, 2],
-                        Extrapolation.CLAMP,
-                    );
+            <Page.Content>
+                <PageTitle>{t('selectLanguage')}</PageTitle>
+                <Carousel
+                    loop={false}
+                    width={width}
+                    height={width/2}
+                    data={languages}
+                    snapEnabled={true}
+                    onSnapToItem={index => i18n.changeLanguage(languages[index].code)}
+                    customAnimation={(value: number) => {
+                        "worklet";
+                        const size = PAGE_WIDTH;
+                        const scale = interpolate(
+                            value,
+                            [-2, -1, 0, 1, 2],
+                            [2, 1.2, 1, 1.2, 2],
+                            Extrapolation.CLAMP,
+                        );
 
-                    const translate = interpolate(
-                        value,
-                        [-2, -1, 0, 1, 2],
-                        [-size * 1.45, -size * 0.9, 0, size * 0.9, size * 1.45],
-                    );
+                        const translate = interpolate(
+                            value,
+                            [-2, -1, 0, 1, 2],
+                            [-size * 1.45, -size * 0.9, 0, size * 0.9, size * 1.45],
+                        );
 
-                    return  {
-                        transform: [
-                            { scale },
-                            {
-                                translateX: translate,
-                            },
-                            { perspective: 150 },
-                            {
-                                rotateY: `${interpolate(value, [-1, 0, 1], [30, 0, -30], Extrapolation.CLAMP)}deg`,
-                            },
-                        ],
-                    };
-                }}
-                modeConfig={{
-                    parallaxScrollingScale: 0.9,
-                    parallaxScrollingOffset: 50,
-                }}
-                renderItem={({ item, index }) => (
-                    <View style={styles.item} key={item.code}>
-                        <CountryFlag isoCode={item.countryCode} size={40} style={styles.flag} />
-                        <Text style={styles.text}>{item.name}</Text>
-                    </View>
-                )}
-            />
+                        return  {
+                            transform: [
+                                { scale },
+                                {
+                                    translateX: translate,
+                                },
+                                { perspective: 150 },
+                                {
+                                    rotateY: `${interpolate(value, [-1, 0, 1], [30, 0, -30], Extrapolation.CLAMP)}deg`,
+                                },
+                            ],
+                        };
+                    }}
+                    modeConfig={{
+                        parallaxScrollingScale: 0.9,
+                        parallaxScrollingOffset: 50,
+                    }}
+                    renderItem={({ item, index }) => (
+                        <View style={styles.item} key={item.code}>
+                            <CountryFlag isoCode={item.countryCode} size={40} style={styles.flag} />
+                            <Text style={styles.text}>{item.name}</Text>
+                        </View>
+                    )}
+                />
 
-            <Button onPress={() => router.replace('/user-data')}>{t('next')}</Button>
+                <Button onPress={() => router.replace('/user-data')}>{t('next')}</Button>
+            </Page.Content>
+            <Page.ForegroundHeader><PageTitle>TEST 123</PageTitle></Page.ForegroundHeader>
+            <Page.Foreground><PageTitle>WTF</PageTitle></Page.Foreground>
         </Page>
     );
 };
