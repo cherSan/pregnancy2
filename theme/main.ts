@@ -1,45 +1,121 @@
-export const theme = {
-    colors: {
-        primary: '#9B59B6',      // основной фиолетовый
-        secondary: '#8E44AD',    // более насыщенный фиолетовый
-        background: '#F3E5F5',   // светло-фиолетовый фон
-        card: '#EDE7F6',         // для карточек, контейнеров
-        text: '#3D3A62',         // основной текст
-        subtitle: '#6C5B7B',     // подзаголовки
-        buttonText: '#FFFFFF',    // текст на кнопках
-        border: '#D1C4E9',        // тонкие линии, границы
-        inputBackground: '#F8F0FA', // поле ввода
-        placeholder: '#A699B7',   // плейсхолдер
-    },
-    fonts: {
-        heading: 'NotoSerif_400Regular',
-        body: 'NotoSans_400Regular',
-        mono: 'NotoSans_400Regular',
-    },
-    spacing: {
-        xs: 4,
-        sm: 8,
-        md: 16,
-        lg: 24,
-        xl: 32,
-    },
-    borderRadius: {
-        sm: 8,
-        md: 16,
-        lg: 24,
-    },
-    shadow: {
-        light: {
-            shadowColor: '#000',
-            shadowOpacity: 0.05,
-            shadowRadius: 6,
-            elevation: 2,
-        },
-        medium: {
-            shadowColor: '#000',
-            shadowOpacity: 0.1,
-            shadowRadius: 10,
-            elevation: 4,
-        },
-    },
+import {Theme} from "@ant-design/react-native/lib/style";
+
+export const purpleTheme: Partial<Theme> = {
+    color_text_base: '#2E0854',
+    color_text_base_inverse: '#eee',
+    color_text_placeholder: '#9A7FCC',
+    color_text_disabled: '#B0A8D1',
+    color_text_caption: '#A99AD0',
+    color_text_paragraph: '#4B2E7F',
+    color_link: '#7B4FFF',
+    color_icon_base: '#4B2E7F',
+
+    fill_body: '#F2EFFF',
+    fill_base: '#E5D9FF',
+    fill_tap: '#D1BFFF',
+    fill_disabled: '#CCC0E5',
+    fill_mask: 'rgba(46, 8, 84, 0.3)',
+    fill_grey: '#EEEAF7',
+
+    brand_primary: '#6A1B9A',
+    brand_primary_tap: '#4A148C',
+    brand_success: '#6AC191',
+    brand_warning: '#FFC107',
+    brand_error: '#FF3B30',
+    brand_important: '#7B4FFF',
+
+    border_color_base: '#B59FFF',
+    border_color_thin: '#D9CCF5',
+    border_divider: '#9A7FCC',  // добавлен цвет для разделителей
+
+    font_size_icontext: 12,
+    font_size_caption_sm: 10,
+    font_size_base: 14,
+    font_size_subhead: 16,
+    font_size_caption: 12,
+    font_size_heading: 18,
+
+    radius_xs: 2,
+    radius_sm: 4,
+    radius_md: 6,
+    radius_lg: 8,
+
+    border_width_sm: 1,
+    border_width_md: 1.5,
+    border_width_lg: 2,
+
+    h_spacing_sm: 8,
+    h_spacing_md: 12,
+    h_spacing_lg: 16,
+    v_spacing_xs: 4,
+    v_spacing_sm: 8,
+    v_spacing_md: 12,
+    v_spacing_lg: 16,
+    v_spacing_xl: 20,
+
+    icon_size_xxs: 10,
+    icon_size_xs: 12,
+    icon_size_sm: 16,
+    icon_size_md: 20,
+    icon_size_lg: 24,
+
+    actionsheet_item_height: 50,
+    actionsheet_item_font_size: 16,
+    button_height: 44,
+    button_font_size: 16,
+    button_height_sm: 32,
+    button_font_size_sm: 14,
+    primary_button_fill: '#6A1B9A',
+    primary_button_fill_tap: '#4A148C',
+    ghost_button_color: '#6A1B9A',
+    ghost_button_fill_tap: '#E5D9FF',
+    warning_button_fill: '#FFC107',
+    warning_button_fill_tap: '#FFB300',
+
+    link_button_font_size: 14,
+    modal_font_size_heading: 18,
+    modal_button_font_size: 16,
+    modal_button_height: 44,
+    list_item_height_sm: 40,
+    list_item_height: 50,
+    tabs_height: 48,
+    tabs_font_size_heading: 16,
+    tab_bar_fill: '#E5D9FF',
+    tab_bar_height: 50,
+    toast_fill: '#6A1B9A',
+    search_bar_fill: '#E5D9FF',
+    search_bar_height: 36,
+    search_bar_input_height: 28,
+    search_bar_font_size: 14,
+    search_color_icon: '#4A148C',
+    notice_bar_fill: '#6A1B9A',
+    notice_bar_height: 40,
+    checkbox_fill_disabled: '#D9CCF5',
+    checkbox_border: '#B59FFF',
+    checkbox_border_disabled: '#CCC0E5',
+    switch_unchecked: '#CCC0E5',
+    switch_unchecked_disabled: '#EEEAF7',
+    tag_height: 24,
+    tag_small_height: 18,
+    picker_header_height: 48,
+    picker_item_height: 36,
+    prefix_width: 60,
+    prefix_padding: 6,
+    extra_max_width: '80%',
+
+    tooltip_dark: '#2E0854',
+    tooltip_border_radius: 6,
+    tooltip_arrow_size: 10,
+
+    toast_zindex: 1990,
+    action_sheet_zindex: 1990,
+    popup_zindex: 2000,
+    modal_zindex: 2000,
+    tooltip_zindex: 2000,
+    switch_inner_zindex: 1,
+
+    shadow_color: '#fff',
+    shadow_opacity: 0.9,
+    shadow_radius: 8,
+    shadow_offset: { width: 0, height: 4 },
 };

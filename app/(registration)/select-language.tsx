@@ -8,6 +8,7 @@ import {Extrapolation, interpolate} from "react-native-reanimated";
 import {useTranslation} from "react-i18next";
 import {PageTitle} from "@/components/page-title";
 import {Button} from "@/components/button";
+import {Page} from "@/components/page";
 
 const languages = [
     { code: 'en', name: 'English', countryCode: 'US' },
@@ -26,7 +27,7 @@ export const SelectLanguage = () => {
     const router = useRouter();
 
     return (
-        <LinearGradient colors={['#8e44ad', '#6a1b9a', '#4a148c']} style={styles.container}>
+        <Page>
             <PageTitle>{t('selectLanguage')}</PageTitle>
             <Carousel
                 loop={false}
@@ -77,7 +78,7 @@ export const SelectLanguage = () => {
             />
 
             <Button onPress={() => router.replace('/user-data')}>{t('next')}</Button>
-        </LinearGradient>
+        </Page>
     );
 };
 
@@ -86,7 +87,6 @@ SelectLanguage.displayName = "SelectLanguage";
 export default SelectLanguage;
 
 const styles = StyleSheet.create({
-    container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
     flag: { elevation: 10 },
 
     item: {
