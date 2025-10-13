@@ -26,8 +26,6 @@
       "predictiveBackGestureEnabled": false,
       "permissions": [
         "android.permission.USE_BIOMETRIC",
-        "android.permission.USE_FINGERPRINT",
-        "android.permission.USE_BIOMETRIC",
         "android.permission.USE_FINGERPRINT"
       ],
       "softwareKeyboardLayoutMode": "resize",
@@ -58,9 +56,7 @@
         }
       ],
       "expo-localization",
-      "react-native-localize",
-      "expo-font",
-      "./plugins/withAndroidDatePickerStyles"
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,

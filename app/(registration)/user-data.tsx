@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, Platform} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 import {PageTitle} from "@/components/page-title";
 import React, {useState} from "react";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePickerModal from "@react-native-community/datetimepicker";
 import {useTranslation} from "react-i18next";
 import {Button} from "@/components/button";
 
@@ -23,11 +23,12 @@ export const RegistrationStep2 = () => {
                 {i18n.t('selectDate')}: { date.toLocaleDateString() }
             </Button>
             <DateTimePickerModal
-                isVisible={showPicker}
                 mode="date"
-                display={'spinner'}
-                onConfirm={onChange}
-                onCancel={() => setShowPicker(false)}
+                themeVariant={'light'}
+                value={date}
+                maximumDate={new Date()}
+                display={'default'}
+                onChange={onChange}
             />
         </LinearGradient>
     );
