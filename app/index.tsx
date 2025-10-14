@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Text, Button, View} from "react-native";
 import {useRouter} from "expo-router";
 import {Page} from "@/components/page";
-import {initUserTable} from "@/database/schemas/User";
+import {initUserTable} from "@/database/schemas/user";
 import {ActivityIndicator} from "@ant-design/react-native";
 import db from "@/database";
 
