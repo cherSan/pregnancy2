@@ -3,7 +3,6 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "init-db": "ts-node scripts/init-database.ts",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
@@ -58,9 +57,11 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@types/node": "^24.7.2",
     "@types/react": "~19.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "~5.9.2"
   },
   "private": true

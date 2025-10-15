@@ -1,67 +1,35 @@
-import {useEffect, useState} from "react";
-import {Text, Button, View} from "react-native";
-import {useRouter} from "expo-router";
-import {Page} from "@/components/page";
-import {initUserTable} from "@/database/schemas/user";
-import {ActivityIndicator} from "@ant-design/react-native";
-import db from "@/database";
+import React, { useEffect } from 'react';
+import { View, Text, ActivityIndicator, Button } from 'react-native';
+import { useDatabaseStore } from '@/stores/database';
+import {Redirect} from "expo-router";
 
-export const Initialization = () => {
-    const [dbReady, setDbReady] = useState(false);
-    const [user, setUser] = useState<any>(undefined);
-
-    const router = useRouter();
-    useEffect(() => {
-        const initializeDb = async () => {
-            await initUserTable();
-            setDbReady(true);
-        };
-        initializeDb();
-    }, []);
+export const DatabaseInitializer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { isInitialized, error, initialize } = useDatabaseStore();
 
     useEffect(() => {
-        if (dbReady) {
-            try {
-                const result = db.getFirstSync('SELECT * FROM users LIMIT 1');
-                setUser(result);
-                if (result) {
-                    db.execAsync(`
-                        DELETE FROM users WHERE id = ${result.id};
-                    `);
-                }
-                console.log('User check result:', result);
-            } catch (e) {
-                console.error('Error checking user:', e);
-            }
-        }
-    }, [dbReady]);
+        initialize();
+    }, [initialize]);
 
-
-    if (!dbReady || !user) {
+    if (error) {
         return (
-            <Page>
-                <Page.Content>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <ActivityIndicator size="large" />
-                        <Text>Загрузка...</Text>
-                    </View>
-                </Page.Content>
-            </Page>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+                <Text style={{ fontSize: 18, color: 'red', marginBottom: 20, textAlign: 'center' }}>
+                    Ошибка загрузки базы данных
+                </Text>
+                <Text style={{ color: 'red', marginBottom: 20, textAlign: 'center' }}>{error}</Text>
+                <Button title="Попробовать снова" onPress={initialize} />
+            </View>
         );
     }
 
-    return (
-        <Page>
-            <Page.Content>
-                <Button title={'login'} onPress={() => router.replace('/authorization')} />
-                <Button title={'private'} onPress={() => router.replace('/home')} />
-                <Button title={'(registration)'} onPress={() => router.replace('/select-language')} />
-                <Text>Initialization</Text>
-            </Page.Content>
-        </Page>
-    );
+    if (!isInitialized) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" />
+                <Text style={{ marginTop: 16 }}>Инициализация базы данных...</Text>
+            </View>
+        );
+    }
+
+    return <Redirect href={"/select-language"} />;
 };
-
-Initialization.displayName = "Initialization";
-
-export default Initialization;
