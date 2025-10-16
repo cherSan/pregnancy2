@@ -1,12 +1,11 @@
-import {Platform, View} from "react-native";
-import {LinearGradient} from "expo-linear-gradient";
-import {PageTitle} from "@/components/page-title";
+import {Platform} from "react-native";
 import React, {useState} from "react";
 import {useTranslation} from "react-i18next";
-import {Button, Card, InputItem, List} from "@ant-design/react-native";
-import {TimePicker} from "@/components/time-picker";
-import {DatePicker} from "@/components/date-picker";
+import {TimePicker} from "@/components/form/time-picker.component";
+import {DatePicker} from "@/components/form/date-picker.component";
 import {Page} from "@/components/page";
+import {List} from "@/components/list";
+import {Input} from "@/components/form/input.component";
 
 export const RegistrationStep2 = () => {
     const [date, setDate] = useState(new Date());
@@ -19,17 +18,17 @@ export const RegistrationStep2 = () => {
         if (selectedDate) setDate(selectedDate);
     };
 
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <Page>
-            <PageTitle>{t('personalData')}</PageTitle>
-            <List>
-                <List.Item>
-                    <InputItem placeholder={'Name'} />
-                </List.Item>
-                <DatePicker title={'TEST1'} />
-                <TimePicker title={'TEST2'} />
-            </List>
+            <Page.Header>{t('personalData')}</Page.Header>
+            <Page.Content>
+                <List>
+                    <Input placeholder={'Name'} error={'T'} />
+                    <DatePicker title={'TEST1'} />
+                    <TimePicker title={'TEST2'} />
+                </List>
+            </Page.Content>
         </Page>
     );
 };

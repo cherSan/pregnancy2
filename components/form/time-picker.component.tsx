@@ -1,8 +1,11 @@
 import React, {ComponentProps, FC, useMemo} from "react";
-import {List, Picker} from "@ant-design/react-native";
+import {Picker} from "@ant-design/react-native";
 import {StyleSheet} from "react-native";
+import { List } from "../list";
+import {purpleTheme} from "@/theme/main";
 
 type Props = Partial<ComponentProps<typeof Picker>> & {
+    title?: string;
     onChange?: (value: [number, number]) => void;
 }
 
@@ -49,9 +52,7 @@ export const TimePicker: FC<Props> = ({ title, ...props }) => {
             title={title}
             format={(labels) => labels.join(':')}
         >
-            <List.Item arrow="horizontal">
-                {title}
-            </List.Item>
+            <List.Item arrow={true} title={title} />
         </Picker>
     )
 }
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     },
     header: {
         borderBottomWidth: 1,
-        backgroundColor: '#2E0854',
+        backgroundColor: purpleTheme.brand_primary_tap,
         elevation: 10,
     },
     actionText: {
@@ -76,14 +77,14 @@ const styles = StyleSheet.create({
         color: '#B59FFF'
     },
     itemActiveStyle: {
-        color: '#2E0854',
+        color: purpleTheme.color_text_base,
         fontSize: 18,
         fontWeight: '700',
     },
     controlOk: {
-        color: '#6AC191',
+        color: purpleTheme.brand_success,
     },
     controlCancel: {
-        color: '#FF3B30',
+        color: purpleTheme.brand_error,
     }
 });

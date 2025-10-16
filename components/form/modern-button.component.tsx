@@ -7,7 +7,7 @@ type ButtonProps = {
     children: string | string[] | JSX.Element | JSX.Element[];
 }
 
-export const Button: FC<ButtonProps> = ({
+export const ModernButton: FC<ButtonProps> = ({
     onPress,
     children
 }) => {
@@ -33,16 +33,20 @@ export const Button: FC<ButtonProps> = ({
     )
 }
 
-Button.displayName = "Button";
+ModernButton.displayName = "ModernButtonComponent";
 
 const styles = StyleSheet.create({
     button: {
         position: "relative",
         display: "flex",
-        width: 200,
+        width: '100%',
         borderRadius: 25,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 8 },
+        shadowOffset: {
+            width: 0,
+            height: 8
+        },
+        backgroundColor: 'rgba(255,255,255,.3)',
         shadowOpacity: 0.3,
         shadowRadius: 12,
         elevation: 6,

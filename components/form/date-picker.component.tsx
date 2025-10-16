@@ -1,9 +1,16 @@
-import { List, DatePicker as AntDatePicker } from "@ant-design/react-native";
+import { DatePicker as AntDatePicker } from "@ant-design/react-native";
 import React, {ComponentProps, FC} from "react";
 import {StyleSheet} from "react-native";
+import { List } from "../list";
+import {purpleTheme} from "@/theme/main";
 
-export const DatePicker: FC<Partial<ComponentProps<typeof AntDatePicker>>> = ({
-    title, ...props
+type Props = Partial<ComponentProps<typeof AntDatePicker>> & {
+    title?: string;
+}
+
+export const DatePicker: FC<Props> = ({
+    title,
+    ...props
 }) => {
     return (
         <AntDatePicker
@@ -22,9 +29,7 @@ export const DatePicker: FC<Partial<ComponentProps<typeof AntDatePicker>>> = ({
                 title: styles.title,
             }}
         >
-            <List.Item arrow="horizontal">
-                {title}
-            </List.Item>
+            <List.Item arrow={true} title={title} />
         </AntDatePicker>
     )
 }
@@ -39,7 +44,7 @@ const styles = StyleSheet.create({
     },
     header: {
         borderBottomWidth: 1,
-        backgroundColor: '#2E0854',
+        backgroundColor: purpleTheme.brand_primary_tap,
         elevation: 10,
     },
     actionText: {
@@ -49,14 +54,14 @@ const styles = StyleSheet.create({
         color: '#B59FFF'
     },
     itemActiveStyle: {
-        color: '#2E0854',
+        color: purpleTheme.color_text_base,
         fontSize: 18,
         fontWeight: '700',
     },
     controlOk: {
-        color: '#6AC191',
+        color: purpleTheme.brand_success,
     },
     controlCancel: {
-        color: '#FF3B30',
+        color: purpleTheme.brand_error,
     }
 });

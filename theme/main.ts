@@ -1,6 +1,7 @@
 import {Theme} from "@ant-design/react-native/lib/style";
+import {create} from "zustand/react";
 
-export const purpleTheme: Partial<Theme> = {
+export const purpleTheme: Theme = {
     color_text_base: '#2E0854',
     color_text_base_inverse: '#eee',
     color_text_placeholder: '#9A7FCC',
@@ -119,3 +120,5 @@ export const purpleTheme: Partial<Theme> = {
     shadow_radius: 8,
     shadow_offset: { width: 0, height: 4 },
 };
+
+export const useTheme = create(() => ({...purpleTheme}));

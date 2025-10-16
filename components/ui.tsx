@@ -1,5 +1,5 @@
 import React, {FC, ReactNode, useMemo} from "react";
-import {Button, Provider} from "@ant-design/react-native";
+import {Provider} from "@ant-design/react-native";
 import {useTranslation} from "react-i18next";
 import enUS from '@ant-design/react-native/lib/locale-provider/en_US';
 import ruRu from '@ant-design/react-native/lib/locale-provider/ru_RU';
