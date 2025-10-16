@@ -6,8 +6,11 @@ import {DatePicker} from "@/components/form/date-picker.component";
 import {Page} from "@/components/page";
 import {List} from "@/components/list";
 import {Input} from "@/components/form/input.component";
+import {ModernButton} from "@/components/form/modern-button.component";
+import {useRouter} from "expo-router";
 
-export const RegistrationStep2 = () => {
+export const UserData = () => {
+    const router = useRouter();
     const [date, setDate] = useState(new Date());
     const [showPicker, setShowPicker] = useState(false);
     const [showTPicker, setShowTPicker] = useState(false);
@@ -26,13 +29,13 @@ export const RegistrationStep2 = () => {
                 <List>
                     <Input placeholder={'Name'} error={'T'} />
                     <DatePicker title={'TEST1'} />
-                    <TimePicker title={'TEST2'} />
                 </List>
+                <ModernButton onPress={() => router.replace('/pin-code')}>{t('next')}</ModernButton>
             </Page.Content>
         </Page>
     );
 };
 
-RegistrationStep2.displayName = "RegistrationStep2";
+UserData.displayName = "UserData";
 
-export default RegistrationStep2;
+export default UserData;

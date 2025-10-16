@@ -1,6 +1,7 @@
 import {ComponentProps, FC, useEffect} from "react";
 import {Pressable, StyleSheet} from "react-native";
 import Animated, {useAnimatedStyle, useSharedValue, withSequence, withSpring} from "react-native-reanimated";
+import {purpleTheme} from "@/theme/main";
 
 type Props = ComponentProps<typeof Animated.View> & {
     onPress?: () => void;
@@ -47,7 +48,9 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         padding: 10,
         borderRadius: 12,
-        backgroundColor: '#fff',
+        backgroundColor: purpleTheme.search_bar_fill,
+        borderColor: purpleTheme.border_color_base,
+        borderWidth: 2,
         overflow: 'hidden',
         elevation: 6,
     }

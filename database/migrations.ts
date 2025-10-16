@@ -14,7 +14,7 @@ export async function runMigrations(db: SQLite.SQLiteDatabase): Promise<void> {
         await Promise.all(sqlAssets.map(asset => asset.downloadAsync()));
         for (const asset of sqlAssets) {
             console.log(`🔧 Выполняем ${asset.name}...`);
-            await executeSqlFile(db, asset.localUri!);
+            executeSqlFile(db, asset.localUri!);
         }
         console.log('🎉 Все миграции выполнены успешно!');
     } catch (error) {
@@ -23,10 +23,10 @@ export async function runMigrations(db: SQLite.SQLiteDatabase): Promise<void> {
     }
 }
 
-async function executeSqlFile(db: SQLite.SQLiteDatabase, fileUri: string): Promise<void> {
+function executeSqlFile(db: SQLite.SQLiteDatabase, fileUri: string): void {
     try {
         const file = new File(fileUri);
-        const sqlContent = await file.text()
+        const sqlContent = file.textSync()
         if (sqlContent) db.execSync(sqlContent);
     } catch (error) {
         console.error('❌ Ошибка выполнения SQL файла:', error);

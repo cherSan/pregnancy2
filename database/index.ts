@@ -1,34 +1,37 @@
 import * as SQLite from 'expo-sqlite';
 import { runMigrations } from './migrations';
+import {openDatabaseSync, SQLiteDatabase} from "expo-sqlite";
 
 class Database {
-    private db: SQLite.SQLiteDatabase | null = null;
+    private db: SQLiteDatabase | null = null;
     private isInitialized = false;
 
-    async init(): Promise<void> {
-        if (this.isInitialized) return;
+    init(): SQLiteDatabase | null {
+        if (this.isInitialized) return this.db;
         try {
-            this.db = await SQLite.openDatabaseAsync('maternity.db');
-            const needsMigration = await this.checkNeedsMigration();
+            this.db = openDatabaseSync('maternity.db');
+            const needsMigration = this.checkNeedsMigration();
             if (needsMigration) {
                 console.log('🚀 Выполняем миграции базы данных...');
-                await runMigrations(this.db);
-                await this.markMigrationComplete();
+                runMigrations(this.db);
+                this.markMigrationComplete();
                 console.log('✅ Миграции завершены');
             } else {
                 console.log('✅ База данных уже инициализирована');
             }
 
             this.isInitialized = true;
+
+            return this.db;
         } catch (error) {
             console.error('❌ Ошибка инициализации БД:', error);
             throw error;
         }
     }
 
-    private async checkNeedsMigration(): Promise<boolean> {
+    private checkNeedsMigration(): boolean {
         try {
-            const result = await this.db?.getFirstAsync<{ count: number }>(
+            const result = this.db?.getFirstSync<{ count: number }>(
                 "SELECT COUNT(*) as count FROM sqlite_master WHERE type='table' AND name='migrations'"
             );
             return !result || result.count === 0;
