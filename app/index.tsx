@@ -33,3 +33,5 @@ export const DatabaseInitializer: React.FC<{ children: React.ReactNode }> = ({ c
 
     return <Redirect href={"/select-language"} />;
 };
+
+export default DatabaseInitializer;

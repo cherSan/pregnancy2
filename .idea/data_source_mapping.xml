@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
-    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/4083e204-ced2-4c41-b32c-6d134d9ae260/console.sql" value="4083e204-ced2-4c41-b32c-6d134d9ae260" />
     <file url="file://$PROJECT_DIR$/database/migrations/000-schema.sql" value="4083e204-ced2-4c41-b32c-6d134d9ae260" />
     <file url="file://$PROJECT_DIR$/database/migrations/001-migration1.sql" value="4083e204-ced2-4c41-b32c-6d134d9ae260" />
     <file url="file://$PROJECT_DIR$/database/migrations/002-migration2.sql" value="4083e204-ced2-4c41-b32c-6d134d9ae260" />
