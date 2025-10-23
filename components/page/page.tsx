@@ -135,9 +135,7 @@ export const Page: FC<PageProps> = ({
                             {gapContent}
                         </View>
                     )}
-                    <View style={styles.content}>
-                        {content}
-                    </View>
+                    {content}
                 </View>
             </Animated.View>
             {foreground}
@@ -165,12 +163,6 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-    },
-    content: {
-        display: "flex",
-        gap: 10,
         flexDirection: "column",
         overflow: "hidden",
     },

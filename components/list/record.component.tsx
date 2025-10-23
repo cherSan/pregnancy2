@@ -64,7 +64,6 @@ export const Record: FC<Props> = ({
                 </View>
             </View>
         );
-
         return (
             <View style={styles.mainContent}>
                 <View
@@ -132,7 +131,7 @@ export const Record: FC<Props> = ({
             </View>
         );
     }, [arrow, children, description, extra, icon, theme, title]);
-    return content;
+
     const pressable = useMemo(() => {
         if (!content) return null;
         return onPress

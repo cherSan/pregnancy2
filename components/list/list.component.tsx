@@ -1,6 +1,6 @@
 import {Children, FC, ReactElement, ReactNode} from "react";
 import {Text} from "@ant-design/react-native";
-import {StyleSheet, View} from "react-native";
+import {ScrollView, StyleSheet, View} from "react-native";
 import {Card} from "../card";
 
 type Props = {
@@ -20,16 +20,18 @@ export const List: FC<Props> = ({children, title}) => {
                     )
                     : null
             }
-            {
-                Children.toArray(children).map((element, index) => (
-                    <View
-                        key={index}
-                        style={[styles.element, { borderTopWidth: index > 0 ? 1 : 0 }]}
-                    >
-                        {element}
-                    </View>
-                ))
-            }
+            <ScrollView showsVerticalScrollIndicator={false}>
+                {
+                    Children.toArray(children).map((element, index) => (
+                        <View
+                            key={index}
+                            style={[styles.element, { borderTopWidth: index > 0 ? 1 : 0 }]}
+                        >
+                            {element}
+                        </View>
+                    ))
+                }
+            </ScrollView>
         </Card>
     )
 }

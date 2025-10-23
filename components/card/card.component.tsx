@@ -45,6 +45,7 @@ export const Card: FC<Props> = ({
 const styles = StyleSheet.create({
     card: {
         display: "flex",
+        flex: 1,
         flexDirection: "column",
         padding: 10,
         borderRadius: 12,

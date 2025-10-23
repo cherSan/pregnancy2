@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     },
     foregroundContent: {
         flex: 1,
-        minHeight: PANEL_HEIGHT,
+        flexDirection: "column",
+        gap: 8
     },
 });
