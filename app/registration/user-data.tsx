@@ -1,6 +1,5 @@
 import {useTranslation} from "react-i18next";
 import {useRouter} from "expo-router";
-import {Text} from "react-native";
 import {DatePicker} from "@/components/form/date-picker.component";
 import {Page} from "@/components/page";
 import {List} from "@/components/list";
@@ -18,13 +17,8 @@ export const UserData = () => {
                     <Input placeholder={'Name'} error={'T'} />
                     <DatePicker title={'TEST1'} />
                 </List>
-                <ModernButton onPress={() => router.replace('/pin-code')}>{t('next')}</ModernButton>
+                <ModernButton onPress={() => router.replace('/home')}>{t('next')}</ModernButton>
             </Page.Content>
-            <Page.Foreground
-                gapContent={<Text>TEST</Text>}
-            >
-                <ModernButton onPress={() => router.replace('/pin-code')}>{t('next')}</ModernButton>
-            </Page.Foreground>
         </Page>
     );
 };

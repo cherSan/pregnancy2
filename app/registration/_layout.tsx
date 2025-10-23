@@ -5,6 +5,7 @@ export const RegistrationLayout = () => {
         <Stack>
             <Stack.Screen name="select-language" options={{ headerShown: false }} />
             <Stack.Screen name="user-data" options={{ headerShown: false }} />
+            <Stack.Screen name="pin-code" options={{ headerShown: false }} />
         </Stack>
     );
 };

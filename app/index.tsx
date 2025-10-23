@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect, FC } from 'react';
 import { View, Text, ActivityIndicator, Button } from 'react-native';
 import {useDatabaseStore} from '@/stores/database';
 import {Redirect} from "expo-router";
 import {getItem} from "expo-secure-store";
 
-export const DatabaseInitializer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const DatabaseInitializer: FC = () => {
     const { isInitialized, error, initialize } = useDatabaseStore();
     const language = getItem('language');
 
@@ -37,8 +37,8 @@ export const DatabaseInitializer: React.FC<{ children: React.ReactNode }> = ({ c
             </View>
         );
     }
-    if (!language) return <Redirect href={"/select-language"} />;
-    return <Redirect href={"/user-data"} />;
+    if (!language) return <Redirect href={"/registration/select-language"} />;
+    return <Redirect href={"/registration/user-data"} />;
 };
 
 export default DatabaseInitializer;
