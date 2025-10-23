@@ -5,7 +5,12 @@ import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {BUFFER, PANEL_HEIGHT, ROUNDED} from "@/components/page/page.const";
 import {usePage} from "@/components/page/page.context";
 
-export const PageForeground: FC<{ children: ReactNode }> = ({ children }) => {
+type Props = {
+    children: ReactNode;
+    gapContent: ReactNode;
+}
+
+export const PageForeground: FC<Props> = ({ children }) => {
     const safeArea = useSafeAreaInsets();
     const { isForegroundOpen, toggleForeground } = usePage();
     const translateY = useSharedValue(BUFFER);
@@ -18,12 +23,14 @@ export const PageForeground: FC<{ children: ReactNode }> = ({ children }) => {
         if (isForegroundOpen) {
             translateY.value = withSpring(BUFFER, {
                 damping: 28,
-                stiffness: 100
+                stiffness: 100,
+                mass: 0.9,
             });
         } else {
             translateY.value = withSpring(PANEL_HEIGHT + BUFFER - 40 - safeArea.bottom, {
                 damping: 28,
-                stiffness: 100
+                stiffness: 100,
+                mass: 0.9,
             });
         }
     }, [isForegroundOpen, safeArea.bottom, translateY])

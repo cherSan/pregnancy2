@@ -1,5 +1,5 @@
-import {Children, FC, isValidElement, ReactNode, useCallback, useEffect, useMemo, useState} from "react";
-import {StyleSheet} from "react-native";
+import {Children, FC, isValidElement, ReactElement, ReactNode, useCallback, useEffect, useMemo, useState} from "react";
+import {StyleSheet, View} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from "react-native-reanimated";
@@ -16,10 +16,11 @@ type PageProps = {
 export const Page: FC<PageProps> = ({children}) => {
     const safeArea = useSafeAreaInsets();
 
-    const {header, content, foreground} = useMemo(() => {
+    const {header, content, foreground, gapContent} = useMemo(() => {
         let header: ReactNode = null;
         let content: ReactNode = null;
         let foreground: ReactNode = null;
+        let gapContent: ReactNode = null;
 
         Children.forEach(children, (child) => {
             if (isValidElement(child)) {
@@ -32,6 +33,7 @@ export const Page: FC<PageProps> = ({children}) => {
                         break;
                     case PageForeground:
                         foreground = child;
+                        gapContent = (child  as ReactElement<{ gapContent?: ReactNode }>).props.gapContent ?? null;
                         break;
                     default:
                         content = child;
@@ -39,7 +41,7 @@ export const Page: FC<PageProps> = ({children}) => {
             }
         });
 
-        return {header, content, foreground};
+        return {header, content, foreground, gapContent};
     }, [children]);
 
     const [isForegroundOpen, setIsForegroundOpen] = useState(!!foreground);
@@ -54,12 +56,12 @@ export const Page: FC<PageProps> = ({children}) => {
         if (isForegroundOpen) {
             translateY.value = withTiming(0, {
                 duration: 800,
-                easing: Easing.bezier(0.19, 1, 0.22, 1)
+                easing: Easing.out(Easing.exp),
             });
         } else {
             translateY.value = withTiming(-HEADER_HEIGHT - safeArea.top - 1, {
                 duration: 800,
-                easing: Easing.bezier(0.19, 1, 0.22, 1)
+                easing: Easing.out(Easing.exp),
             });
         }
     }, [foreground, isForegroundOpen, safeArea.top, translateY]);
@@ -106,7 +108,24 @@ export const Page: FC<PageProps> = ({children}) => {
                     style={styles.background}
                 />
                 {header}
-                {content}
+                <View
+                    style={[
+                        styles.content,
+                        {
+                            paddingLeft: safeArea.left,
+                            paddingRight: safeArea.right,
+                            paddingTop: safeArea.top,
+                            paddingBottom: safeArea.bottom,
+                        }
+                    ]}
+                >
+                    {gapContent && (
+                        <View style={styles.gapContent}>
+                            {gapContent}
+                        </View>
+                    )}
+                    {content}
+                </View>
             </Animated.View>
             {foreground}
         </PageContext.Provider>
@@ -130,4 +149,17 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
     },
+    content: {
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+        gap: 8
+    },
+    gapContent: {
+        height: 120,
+        paddingBottom: 10,
+        overflow: "hidden",
+        justifyContent: "center",
+    }
 });
