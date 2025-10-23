@@ -1,8 +1,8 @@
 import {FC} from "react";
 import {StyleSheet, View} from "react-native";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {HEADER_HEIGHT, ROUNDED} from "@/components/page/page.const";
 import {PageTitle} from "@/components/page-title";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 type Props = { children: string };
 

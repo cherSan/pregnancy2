@@ -1,9 +1,9 @@
 import {FC, ReactNode, useEffect} from "react";
 import Animated, {useAnimatedStyle, useSharedValue, withSpring} from "react-native-reanimated";
 import {Pressable, ScrollView, StyleSheet, View, Text} from "react-native";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {BUFFER, PANEL_HEIGHT, ROUNDED} from "@/components/page/page.const";
 import {usePage} from "@/components/page/page.context";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export const PageForeground: FC<{ children: ReactNode }> = ({ children }) => {
     const safeArea = useSafeAreaInsets();
@@ -17,13 +17,13 @@ export const PageForeground: FC<{ children: ReactNode }> = ({ children }) => {
     useEffect(() => {
         if (isForegroundOpen) {
             translateY.value = withSpring(BUFFER, {
-                damping: 20,
-                stiffness: 90
+                damping: 28,
+                stiffness: 100
             });
         } else {
             translateY.value = withSpring(PANEL_HEIGHT + BUFFER - 40 - safeArea.bottom, {
-                damping: 20,
-                stiffness: 90
+                damping: 28,
+                stiffness: 100
             });
         }
     }, [isForegroundOpen, safeArea.bottom, translateY])

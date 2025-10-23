@@ -1,5 +1,5 @@
 import {View, Text, Button} from "react-native";
-import {Stack, useNavigation, useRouter} from "expo-router";
+import {useRouter} from "expo-router";
 
 export const Authorization = () => {
     const router = useRouter();

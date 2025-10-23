@@ -1,7 +1,7 @@
-import { Page as PageComponent } from './page';
 import {PageContent} from "@/components/page/content";
 import {PageForeground} from "@/components/page/foreground";
 import {Header} from "@/components/page/header";
+import {Page as PageComponent} from './page';
 
 type Interface = typeof PageComponent & {
     Content: typeof PageContent;

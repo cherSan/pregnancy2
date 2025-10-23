@@ -1,11 +1,11 @@
 import {Children, FC, isValidElement, ReactNode, useCallback, useEffect, useMemo, useState} from "react";
 import {StyleSheet} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import {LinearGradient} from "expo-linear-gradient";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
+import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from "react-native-reanimated";
 import {PageContent} from "@/components/page/content";
 import {PageForeground} from "@/components/page/foreground";
 import {Header} from "@/components/page/header";
-import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from "react-native-reanimated";
 import {HEADER_HEIGHT} from "@/components/page/page.const";
 import {PageContext, PageContextType} from "./page.context";
 
@@ -13,10 +13,10 @@ type PageProps = {
     children: ReactNode;
 };
 
-export const Page: FC<PageProps> = ({ children }) => {
+export const Page: FC<PageProps> = ({children}) => {
     const safeArea = useSafeAreaInsets();
 
-    const { header, content, foreground } = useMemo(() => {
+    const {header, content, foreground} = useMemo(() => {
         let header: ReactNode = null;
         let content: ReactNode = null;
         let foreground: ReactNode = null;
@@ -39,13 +39,13 @@ export const Page: FC<PageProps> = ({ children }) => {
             }
         });
 
-        return { header, content, foreground };
+        return {header, content, foreground};
     }, [children]);
 
     const [isForegroundOpen, setIsForegroundOpen] = useState(!!foreground);
     const translateY = useSharedValue(0);
     const animatedStyle = useAnimatedStyle(() => ({
-        transform: [{ translateY: translateY.value }],
+        transform: [{translateY: translateY.value}],
     }));
 
 
@@ -57,7 +57,7 @@ export const Page: FC<PageProps> = ({ children }) => {
                 easing: Easing.bezier(0.19, 1, 0.22, 1)
             });
         } else {
-            translateY.value = withTiming(-HEADER_HEIGHT-safeArea.top-1, {
+            translateY.value = withTiming(-HEADER_HEIGHT - safeArea.top - 1, {
                 duration: 800,
                 easing: Easing.bezier(0.19, 1, 0.22, 1)
             });
@@ -72,7 +72,7 @@ export const Page: FC<PageProps> = ({ children }) => {
         setIsForegroundOpen(false);
     }, []);
 
-    const toggleForeground =  useCallback(() => {
+    const toggleForeground = useCallback(() => {
         setIsForegroundOpen(value => !value);
     }, []);
 

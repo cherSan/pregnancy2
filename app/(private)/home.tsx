@@ -1,8 +1,6 @@
-import {View, Text, Button} from "react-native";
-import {useRouter} from "expo-router";
+import {View, Text} from "react-native";
 
 export const PrivateHome = () => {
-    const router = useRouter();
     return (
         <View>
             <Text>Step1</Text>
