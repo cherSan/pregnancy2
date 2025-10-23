@@ -1,12 +1,14 @@
 import {FC, ReactNode, useEffect} from "react";
 import Animated, {useAnimatedStyle, useSharedValue, withSpring} from "react-native-reanimated";
 import {Pressable, ScrollView, StyleSheet, View, Text} from "react-native";
-import {EXTRA_HEIGHT, PANEL_HEIGHT, ROUNDED, SCREEN_HEIGHT, VISIBLE_PART} from "@/components/page/page.const";
+import {BUFFER, PANEL_HEIGHT, ROUNDED} from "@/components/page/page.const";
 import {usePage} from "@/components/page/page.context";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export const PageForeground: FC<{ children: ReactNode }> = ({ children }) => {
+    const safeArea = useSafeAreaInsets();
     const { isForegroundOpen, toggleForeground } = usePage();
-    const translateY = useSharedValue(SCREEN_HEIGHT - PANEL_HEIGHT);
+    const translateY = useSharedValue(BUFFER);
 
     const animatedStyle = useAnimatedStyle(() => ({
         transform: [{ translateY: translateY.value }],
@@ -14,20 +16,27 @@ export const PageForeground: FC<{ children: ReactNode }> = ({ children }) => {
 
     useEffect(() => {
         if (isForegroundOpen) {
-            translateY.value = withSpring(SCREEN_HEIGHT - PANEL_HEIGHT, {
+            translateY.value = withSpring(BUFFER, {
                 damping: 20,
                 stiffness: 90
             });
         } else {
-            translateY.value = withSpring(SCREEN_HEIGHT - VISIBLE_PART, {
+            translateY.value = withSpring(PANEL_HEIGHT + BUFFER - 40 - safeArea.bottom, {
                 damping: 20,
                 stiffness: 90
             });
         }
-    }, [isForegroundOpen, translateY])
+    }, [isForegroundOpen, safeArea.bottom, translateY])
 
     return (
-        <Animated.View style={[styles.foreground, animatedStyle]}>
+        <Animated.View style={[
+            styles.foreground,
+            animatedStyle,
+            {
+                paddingLeft: safeArea.left,
+                paddingRight: safeArea.right
+            }
+        ]}>
             <Pressable style={styles.pullIndicator} onPress={toggleForeground}>
                 <Text style={styles.pullIndicatorText}>
                     {isForegroundOpen ? '▼ Закрыть' : '▲ Открыть'}
@@ -37,11 +46,15 @@ export const PageForeground: FC<{ children: ReactNode }> = ({ children }) => {
             <ScrollView
                 bounces={false}
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.scrollContent}
+                contentContainerStyle={[
+                    {
+                        paddingVertical: safeArea.bottom
+                    }
+                ]}
             >
                 <View style={styles.foregroundContent}>
                     {children}
-                    <View style={{ height: EXTRA_HEIGHT }} />
+                    <View style={{ height: BUFFER }} />
                 </View>
             </ScrollView>
         </Animated.View>
@@ -51,10 +64,10 @@ export const PageForeground: FC<{ children: ReactNode }> = ({ children }) => {
 const styles = StyleSheet.create({
     foreground: {
         position: "absolute",
-        top: 0,
+        bottom: 0,
         left: 0,
         right: 0,
-        height: PANEL_HEIGHT + EXTRA_HEIGHT,
+        height: PANEL_HEIGHT + BUFFER,
         backgroundColor: "#fff",
         borderTopLeftRadius: ROUNDED,
         borderTopRightRadius: ROUNDED,
@@ -69,9 +82,10 @@ const styles = StyleSheet.create({
         elevation: 10,
     },
     pullIndicator: {
-        width: "100%",
+        display: "flex",
         alignItems: "center",
-        paddingVertical: 10,
+        justifyContent: "center",
+        height: 40,
         backgroundColor: "#fff",
         borderBottomWidth: 1,
         borderBottomColor: "#eee",
@@ -80,11 +94,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "600",
         color: "#8e44ad",
-        height: 40,
-    },
-    scrollContent: {
-        flexGrow: 1,
-        paddingBottom: 20,
     },
     foregroundContent: {
         flex: 1,

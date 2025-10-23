@@ -1,17 +1,18 @@
 import {FC, ReactNode} from "react";
-import {ScrollView, StyleSheet, View} from "react-native";
-export const PageContent: FC<{ children: ReactNode }> = ({ children }) => (
-    <ScrollView>
-        <View style={styles.content}>
+import {ScrollView} from "react-native";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
+export const PageContent: FC<{ children: ReactNode }> = ({ children }) => {
+    const safeArea = useSafeAreaInsets();
+    return (
+        <ScrollView
+            style={{
+                paddingTop: safeArea.top,
+                paddingLeft: safeArea.left,
+                paddingBottom: safeArea.bottom,
+                paddingRight: safeArea.right
+            }}
+        >
             { children }
-        </View>
-    </ScrollView>
-);
-
-const styles = StyleSheet.create({
-    content: {
-        flex: 1,
-        padding: 8,
-        gap: 16,
-    },
-});
+        </ScrollView>
+    );
+};
