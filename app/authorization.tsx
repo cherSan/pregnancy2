@@ -7,7 +7,6 @@ export const Authorization = () => {
         <View>
             <Button title={'login'} onPress={() => router.replace('/authorization')} />
             <Button title={'private'} onPress={() => router.replace('/home')} />
-            <Button title={'registration'} onPress={() => router.replace('/select-language')} />
             <Text>Authorization</Text>
         </View>
     );

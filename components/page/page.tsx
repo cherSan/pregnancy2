@@ -11,9 +11,13 @@ import {PageContext, PageContextType} from "./page.context";
 
 type PageProps = {
     children: ReactNode;
+    hasTabBar?: boolean;
 };
 
-export const Page: FC<PageProps> = ({children}) => {
+export const Page: FC<PageProps> = ({
+                                        children,
+                                        hasTabBar = false,
+}) => {
     const safeArea = useSafeAreaInsets();
 
     const {header, content, foreground, gapContent} = useMemo(() => {
@@ -82,9 +86,9 @@ export const Page: FC<PageProps> = ({children}) => {
         isForegroundOpen,
         openForeground,
         closeForeground,
-        toggleForeground
+        toggleForeground,
+        hasTabBar
     };
-
     return (
         <PageContext.Provider value={contextValue}>
             <Animated.View
@@ -110,21 +114,30 @@ export const Page: FC<PageProps> = ({children}) => {
                 {header}
                 <View
                     style={[
-                        styles.content,
+                        styles.wrapper,
                         {
-                            paddingLeft: safeArea.left,
-                            paddingRight: safeArea.right,
+                            paddingLeft: safeArea.left + 4,
+                            paddingRight: safeArea.right + 4,
                             paddingTop: safeArea.top,
                             paddingBottom: safeArea.bottom,
                         }
                     ]}
                 >
                     {gapContent && (
-                        <View style={styles.gapContent}>
+                        <View
+                            style={[
+                                styles.gapContent,
+                                {
+                                    marginBottom: safeArea.top,
+                                }
+                            ]}
+                        >
                             {gapContent}
                         </View>
                     )}
-                    {content}
+                    <View style={styles.content}>
+                        {content}
+                    </View>
                 </View>
             </Animated.View>
             {foreground}
@@ -149,16 +162,20 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
     },
-    content: {
+    wrapper: {
         flex: 1,
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        gap: 8
+    },
+    content: {
+        display: "flex",
+        gap: 10,
+        flexDirection: "column",
+        overflow: "hidden",
     },
     gapContent: {
-        height: 120,
-        paddingBottom: 10,
+        height: 80,
         overflow: "hidden",
         justifyContent: "center",
     }

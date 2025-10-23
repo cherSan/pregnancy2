@@ -132,7 +132,7 @@ export const Record: FC<Props> = ({
             </View>
         );
     }, [arrow, children, description, extra, icon, theme, title]);
-
+    return content;
     const pressable = useMemo(() => {
         if (!content) return null;
         return onPress
@@ -147,7 +147,7 @@ export const Record: FC<Props> = ({
                 </View>
             );
     }, [content, onPress]);
-    
+
     const styledActions = useMemo<ComponentProps<typeof SwipeAction> | null>(() => {
         if (!actions) return null;
 

@@ -2,6 +2,7 @@ import {createContext, useContext} from "react";
 
 export type PageContextType = {
     isForegroundOpen: boolean;
+    hasTabBar: boolean;
     openForeground: () => void;
     closeForeground: () => void;
     toggleForeground: () => void;

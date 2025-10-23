@@ -72,7 +72,7 @@ export const SelectLanguage = () => {
                         parallaxScrollingScale: 0.9,
                         parallaxScrollingOffset: 50,
                     }}
-                    renderItem={({ item, index }) => (
+                    renderItem={({ item }) => (
                         <View style={styles.item} key={item.code}>
                             <CountryFlag isoCode={item.countryCode} size={60} style={styles.flag} />
                             <Text style={styles.text}>{item.name}</Text>
@@ -82,7 +82,7 @@ export const SelectLanguage = () => {
                 <ModernButton
                     onPress={() => {
                         setItem('language', i18n.language);
-                        router.replace('/user-data')
+                        router.replace('/registration/user-data')
                     }}
                 >
                     {t('next')}
